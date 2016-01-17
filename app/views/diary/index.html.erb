@@ -1,0 +1,11 @@
+<% provide(:title, 'Many a little makes') %>
+<h1>投稿テスト</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@item, :url => {:controller => 'diary', :action => 'create'}) do |f| %>
+      <%= f.text_field :text %><br />
+      <%= f.submit "決定" %><br />
+    <% end %>
+  </div>
+</div>

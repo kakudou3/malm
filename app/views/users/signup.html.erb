@@ -1,0 +1,21 @@
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<h1>SIGN UP</h1>
+<body>
+  <div class="">
+  <%= form_for(@user, :url => {:controller => 'users', :action => 'signup'}) do |f| %>
+    <div class="form-group">
+      <%= f.text_field :name, class: 'form-control', :placeholder => 'name' %><br />
+    </div>
+    <div class="form-group">
+      <%= f.text_field :email, class: 'form-control', :placeholder => 'email' %><br />
+    </div>
+    <div class="form-group">
+      <%= f.text_field :password, class: 'form-control', :placeholder => 'password' %><br />
+    </div>
+    <%= f.submit "SIGN UP", class: 'btn btn-default btn-primary' %><br />
+  <% end %>
+  </div>
+  <br />
+</body>
