@@ -1,0 +1,25 @@
+current directory: /diary/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.10/ext/mri
+/home/vagrant/.rbenv/versions/2.3.0/bin/ruby -r ./siteconf20160118-6226-79meob.rb extconf.rb
+creating Makefile
+
+current directory: /diary/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.10/ext/mri
+make "DESTDIR=" clean
+make: Warning: File `Makefile' has modification time 1.1e+03 s in the future
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /diary/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.10/ext/mri
+make "DESTDIR="
+make: Warning: File `Makefile' has modification time 1.1e+03 s in the future
+compiling bcrypt_ext.c
+compiling crypt.c
+compiling crypt_blowfish.c
+compiling crypt_gensalt.c
+compiling wrapper.c
+linking shared-object bcrypt_ext.so
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /diary/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.10/ext/mri
+make "DESTDIR=" install
+make: Warning: File `Makefile' has modification time 1.1e+03 s in the future
+/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20160118-6226-1cpsnib
+make: warning:  Clock skew detected.  Your build may be incomplete.

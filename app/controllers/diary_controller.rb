@@ -6,4 +6,12 @@ class DiaryController < ApplicationController
   def create
     render "index"
   end
+
+  def log
+
+  end
+
+  def setting
+
+  end
 end
