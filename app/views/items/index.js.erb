@@ -1,3 +1,5 @@
 console.log("ajax response");
-$('#table-item').append("<tr><td><h4><%=j render 'item' %></h4></td></tr>");
+//$('#table-item').append("<tr><td><h4><%=j render 'item' %></h4></td></tr>");
+$('#table-item').append("<%=j render 'item' %>");
+$('.form-control').val("");
 $('#item-content').scrollTop($('#item-content')[0].scrollHeight);

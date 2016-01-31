@@ -1,1 +1,24 @@
-<h4><%= @postitem.text %></h4>
+<tr>
+  <td class="item" id="<%= @postitem.id %>" style="">
+    <div class="row">
+      <div class="col-md-9"><%= @postitem.text %></div>
+      <div class="col-md-3 item-action" style="display: none;">
+        <button type="button" class="btn btn-success">Edit</button>
+        <button type="button" class="btn btn-warning">Delete</button>
+      </div>
+    </div>
+  </td>
+</tr>
+
+<script type="text/javascript">
+  $('.item').hover (
+    function () {
+      var id = $(this).attr("id");
+      $('#'+id+' .item-action').show();
+    },
+    function () {
+      var id = $(this).attr("id");
+      $('#'+id+' .item-action').hide();
+    }
+  );
+</script>

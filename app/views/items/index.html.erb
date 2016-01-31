@@ -23,31 +23,52 @@
 <div class="content">
   <div class="container">
     <div class="row">
-    <div class="col-md-9 col-md-offset-1">
-      <div class="item-content" id="item-content" style="height:500px; overflow:scroll;">
-        <table class="table table-condensed" style="/* background-color: rgb(251, 251, 249);*/">
-          <tbody id="table-item">
-            <% if !@items.nil? then %>
-              <% @items.each do |item| %>
-                <tr style="/* background-color: rgb(251, 251, 249);*/">
-                  <td style="/* background-color: rgb(251, 251, 249);*/"><h4><%= item.text %></h4></td>
-                </tr>
-              <% end %>
-            <% end %>
-          </tbody>
-        </table>
+      <div class="col-md-1">
+        <h3><%= Date.today %></h3>
       </div>
-    </div>
-    </div>
-    <div class="row">
-      <%= form_for(@item, :url => {:controller => 'items', :action => 'index'}, remote: true) do |f| %>
-        <div class="col-md-6 col-md-offset-1"><%= f.text_field :text, class: 'form-control', :placeholder => 'なにか書く' %></div>
-        <div class="col-md-4"><%= f.submit "投稿", class: 'btn btn-default btn-primary' %></div><br />
-      <% end %>
+      <div class="col-md-9 col-md-offset-1">
+        <div class="item-content" id="item-content" style="height:500px; overflow:scroll;">
+          <table class="table table-condensed" style="/* background-color: rgb(251, 251, 249);*/">
+            <tbody id="table-item">
+              <% if !@items.nil? then %>
+                <% @items.each do |item| %>
+                  <tr>
+                    <td class="item" id="<%= item.id %>" style="">
+                        <div class="row">
+                          <div class="col-md-9"><%= item.text %></div>
+                          <div class="col-md-3 item-action" style="display: none;">
+                            <button type="button" class="btn btn-success">Edit</button>
+                            <button type="button" class="btn btn-warning">Delete</button>
+                          </div>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <%= form_for(@item, :url => {:controller => 'items', :action => 'index'}, remote: true) do |f| %>
+          <div class="col-md-9"><%= f.text_field :text, class: 'form-control', :placeholder => 'なにか書く' %></div>
+          <div class="col-md-3"><%= f.submit "投稿", class: 'btn btn-default btn-primary' %></div><br />
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
   $('#item-content').scrollTop($('#item-content')[0].scrollHeight);
+  $('.item').hover (
+    function () {
+      var id = $(this).attr("id");
+      $('#'+id+' .item-action').show();
+      console.log("on");
+    },
+    function () {
+      var id = $(this).attr("id");
+      $('#'+id+' .item-action').hide();
+      console.log("off")
+    }
+  );
 </script>

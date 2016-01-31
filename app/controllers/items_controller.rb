@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
 
     if request.post?
       @item.text = params[:item][:text]
+      @item.user_id = session[:user_id]
 
       respond_to do |format|
         if @item.save
@@ -15,7 +16,9 @@ class ItemsController < ApplicationController
         end
       end
     else
-      @items = Item.all
+      @items = Item.where("user_id = ? and created_at >= ?", session[:user_id], Time.zone.now.beginning_of_day)
+      # logger.debug @items[0].text
+      # @items = Item.all
     end
   end
 
