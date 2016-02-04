@@ -1,7 +1,7 @@
 <tr>
   <td class="item" id="<%= @postitem.id %>" style="">
     <div class="row">
-      <div class="col-md-9"><%= @postitem.text %></div>
+      <div class="col-md-9"><%= text_url_to_link(@postitem.text).html_safe %></div>
       <div class="col-md-3 item-action" style="display: none;">
         <button type="button" class="btn btn-success">Edit</button>
         <button type="button" class="btn btn-warning">Delete</button>

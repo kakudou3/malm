@@ -22,6 +22,35 @@ class ItemsController < ApplicationController
     end
   end
 
+  # 編集
+  def edit
+    if request.post?
+      @edit_item = Item.where("id = ?", params[:id]).first
+      @edit_item.update(text: params[:text])
+
+      respond_to do |format|
+        format.json { render :json => @edit_item }
+      end
+    else
+      render nothing: true
+    end
+  end
+
+  # 削除
+  def delete
+    if request.post?
+      @delete_item = Item.where("id = ?", params[:id]).first
+      @delete_item.destroy
+
+      respond_to do |format|
+        format.json { render :json => @delete_item }
+      end
+    else
+      render nothing: true
+    end
+    # render nothing: true
+  end
+
   def create
     item = Item.new
     item.text = params[:item][:text]

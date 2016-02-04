@@ -18,3 +18,12 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+set :output, "log/crontab.log"
+
+set :environment, :development
+
+# 毎日 00:00分に行うタスク
+every 1.day, at: '00:00 am' do
+  rake 'rake:create'
+end

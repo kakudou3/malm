@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'items/index'
   post 'items/index'
   post 'items/create'
+  post 'items/edit'
+  post 'items/delete'
 
   get 'diary/index'
   post 'diary/create'
