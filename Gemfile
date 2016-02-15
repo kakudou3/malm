@@ -20,6 +20,8 @@ gem 'twitter-bootstrap-rails'
 
 gem 'whenever', require: false
 
+gem 'redcarpet'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -51,3 +53,7 @@ group :development do
   gem 'spring'
 end
 
+group :production, :staging do
+  # ログ保存先変更、静的アセット Heroku 向けに調整
+  # gem 'rails_12factor'
+end

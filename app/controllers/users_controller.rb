@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       # トップページへ戻る
       redirect_to :action => "index"
     else
-      # render 'new'
+      render 'signup'
     end
   end
 

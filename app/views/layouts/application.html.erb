@@ -6,9 +6,83 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body style="background-color: rgb(249, 249, 246);">
+
+  <!-- header -->
+  <% if controller.controller_name == 'users' || controller.controller_name == 'sessions' %>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <% if controller.action_name == 'new' %>
+            <a class="navbar-brand" href="../users/index">Many a little makes</a>
+          <% elsif controller.action_name == 'signup'%>
+            <a class="navbar-brand" href="../users/index">Many a little makes</a>
+          <% else %>
+            <a class="navbar-brand" href="../users/index">Many a little makes</a>
+          <% end %>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../sessions/new">Log in</a></li>
+            <li><button type="button" class="btn btn-primary navbar-btn signup-button">Sign up</button></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  <% else %>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Many a little makes</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class=""><a href="../items/index">分報</a></li>
+            <li><a href="../diary_items/index">日報</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Setting <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <!--<li><a href="#">Profile</a></li>
+                <li><a href="../settings/index">Setting</a></li>
+                <li role="separator" class="divider"></li>-->
+                <li><a href="../sessions/destroy">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  <% end %>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="col-md-6 col-md-offset-3">
+        <% flash.each do |key, value| %>
+          <font color="red"><%= content_tag(:div, value, class: "#{key}") %></font>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
 <%= yield %>
+
+  <!-- footer -->
 
 </body>
 </html>

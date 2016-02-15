@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'diary_items/show'
 
   get 'sessions/new'
+  get 'sessions/destroy'
   post 'sessions/create'
   delete 'sessions/destroy'
 

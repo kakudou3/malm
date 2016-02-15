@@ -1,44 +1,24 @@
 <% provide(:title, 'Many a little makes') %>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">malm</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">分報</a></li>
-        <li><a href="#">日報</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">設定</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
 <div class="content">
-  <div class="container">
-    <div class="row">
+  <div class="container-fluid">
+    <div class="row-fluid">
       <div class="col-md-1">
         <h3><% d = Date.today %>
         <%= d.strftime("%Y/%m/%d") %>
         </h3>
       </div>
       <div class="col-md-9 col-md-offset-1">
-        <div class="item-content" id="item-content" style="height:500px; overflow:scroll;">
-          <table class="table table-condensed" style="/* background-color: rgb(251, 251, 249);*/">
+        <div class="item-content" id="item-content" style="height:470px; overflow:scroll;">
+          <table class="table table-condensed" style="background-color: rgb(249, 249, 246);">
             <tbody id="table-item">
               <% if !@items.nil? then %>
                 <% @items.each do |item| %>
                   <tr id="<%= item.id %>">
                     <td class="item" id="<%= item.id %>" style="">
-                        <div class="row">
+                        <div class="row-fluid" style="padding-top: 10px; padding-bottom: 10px;">
                           <div class="item-inner" id="<%= item.id %>">
-                            <div class="col-md-9 item-text" id="<%= item.id %>"><%= text_url_to_link(item.text).html_safe %></div>
+                            <div class="col-md-9 item-text" id="<%= item.id %>"><%= markdown(text_url_to_link(linebreak_to_br(item.text)).html_safe) %></div>
                             <div class="col-md-3 item-action" style="display: none;">
                               <button type="button" class="btn btn-success edit-button" id="<%= item.id %>">Edit</button>
                               <button type="button" class="btn btn-warning delete-button" id="<%= item.id %>">Delete</button>
@@ -51,8 +31,8 @@
                                 <div class="col-md-9 item-edit-text" id="<%= item.id %>"><%= f.text_area :text, class: ['form-control', 'item-edit'], id: item.id %></div>
                               </div>
                               <div class="row">
-                                <div class="col-md-1"><input type="button" value="キャンセル" class="btn btn-default btn-primary edit-cancel" id="<%= item.id %>"></div>
-                                <div class="col-md-1"><input type="button" value="保存" class="btn btn-default btn-primary edit-submit" id="<%= item.id %>"></div>
+                                <div class="col-md-1"><input type="button" value="キャンセル" class="btn btn-default edit-cancel" id="<%= item.id %>"></div>
+                                <div class="col-md-1"><input type="button" value="保存" class="btn btn-success btn-primary edit-submit" id="<%= item.id %>"></div>
                               </div>
                             <% end %>
                           </div>
@@ -66,7 +46,7 @@
           </table>
         </div>
         <%= form_for(@item, :url => {:controller => 'items', :action => 'index'}, remote: true) do |f| %>
-          <div class="col-md-9"><%= f.text_field :text, class: 'form-control', :placeholder => 'なにか書く' %></div>
+          <div class="col-md-9"><%= f.text_area :text, :placeholder=> 'なにか書く', class: ['form-control', 'item-textarea'] %></div>
           <div class="col-md-3"><%= f.submit "投稿", class: 'btn btn-default btn-primary' %></div><br />
         <% end %>
       </div>
@@ -75,6 +55,26 @@
 </div>
 
 <script type="text/javascript">
+
+  //textareaの動的変更
+  $(".item-textarea").height(30);
+  $(".item-textarea").css("lineHeight","20px");
+
+  $(".item-textarea").on("input",function(evt){
+    if(evt.target.scrollHeight > evt.target.offsetHeight){
+        $(evt.target).height(evt.target.scrollHeight);
+    }else{
+        var lineHeight = Number($(evt.target).css("lineHeight").split("px")[0]);
+        while (true){
+            $(evt.target).height($(evt.target).height() - lineHeight);
+            if(evt.target.scrollHeight > evt.target.offsetHeight){
+                $(evt.target).height(evt.target.scrollHeight);
+                break;
+            }
+        }
+    }
+  });
+
   $('#item-content').scrollTop($('#item-content')[0].scrollHeight);
   $('.item').hover (
     function () {

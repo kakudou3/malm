@@ -1,12 +1,27 @@
-<tr>
+<tr id="<%= @postitem.id %>">
   <td class="item" id="<%= @postitem.id %>" style="">
-    <div class="row">
-      <div class="col-md-9"><%= text_url_to_link(@postitem.text).html_safe %></div>
-      <div class="col-md-3 item-action" style="display: none;">
-        <button type="button" class="btn btn-success">Edit</button>
-        <button type="button" class="btn btn-warning">Delete</button>
+      <div class="row-fluid" style="padding-top: 10px; padding-bottom: 10px;">
+        <div class="item-inner" id="<%= @postitem.id %>">
+          <div class="col-md-9 item-text" id="<%= @postitem.id %>"><%= markdown(text_url_to_link(linebreak_to_br(@postitem.text)).html_safe) %></div>
+          <div class="col-md-3 item-action" style="display: none;">
+            <button type="button" class="btn btn-success edit-button" id="<%= @postitem.id %>">Edit</button>
+            <button type="button" class="btn btn-warning delete-button" id="<%= @postitem.id %>">Delete</button>
+          </div>
+        </div>
+
+        <div class="container edit-form" id="<%= @postitem.id %>" style="display: none;">
+          <%= form_for(@item, :url => {:controller => 'items', :action => 'edit'}, :html => {:onsubmit => "return false;"}, remote: true) do |f| %>
+            <div class="row">
+              <div class="col-md-9 item-edit-text" id="<%= @postitem.id %>"><%= f.text_area :text, class: ['form-control', 'item-edit'], id: @postitem.id %></div>
+            </div>
+            <div class="row">
+              <div class="col-md-1"><input type="button" value="キャンセル" class="btn btn-default edit-cancel" id="<%= @postitem.id %>"></div>
+              <div class="col-md-1"><input type="button" value="保存" class="btn btn-success btn-primary edit-submit" id="<%= @postitem.id %>"></div>
+            </div>
+          <% end %>
+        </div>
+
       </div>
-    </div>
   </td>
 </tr>
 
@@ -21,4 +36,65 @@
       $('#'+id+' .item-action').hide();
     }
   );
+
+  // 編集ボタンのクリックイベント
+  $('.edit-button').click(function() {
+    var id = $(this).attr("id");
+
+    // submitボタンを編集ボタンへ変更する
+    $('#'+id+'.item-inner').hide();
+    $('#'+id+'.edit-form').show();
+
+    // 現在の文字列をテキストフィールドを入れる
+    console.log($('#'+id+'.item-text').text());
+
+    var text = $('#'+id+'.item-text').text();
+
+    $('.item-edit').val(text);
+  });
+
+  $('.edit-cancel').click(function() {
+    console.log("edit");
+    var id = $(this).attr("id");
+
+    $('#'+id+'.edit-form').hide();
+    $('#'+id+'.item-inner').show();
+  });
+
+  $('.edit-submit').click(function() {
+      console.log("submit");
+      var id = $(this).attr("id");
+      var text = $('#'+id+'.item-edit').val();
+      console.log(text);
+
+      $('#'+id+'.edit-form').hide();
+      $('#'+id+'.item-inner').show();
+
+      // ajax通信の開始
+      $.ajax({
+        type: "POST",
+        url: "edit",
+        data: { id: id, text: text },
+        success: function(response) {
+          console.log(response)
+          $('#'+id+'.item-text').text(response.text)
+        }
+      });
+  });
+
+  // 削除ボタンのクリックイベント
+  $('.delete-button').click(function() {
+    var id = $(this).attr("id");
+
+    // ajax通信
+    $.ajax({
+      type: "POST",
+      url: "delete",
+      data: { id: id },
+      success: function(response){
+        console.log(response)
+        $('tr'+'#'+id).remove();
+      }
+    });
+  });
 </script>
