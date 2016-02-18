@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   get 'settings/index'
 
   get 'diary_items/index'

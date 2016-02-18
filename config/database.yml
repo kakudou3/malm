@@ -51,4 +51,4 @@ production:
   <<: *default
   database: diary_production
   username: diary
-  password: <%= ENV['DIARY_DATABASE_PASSWORD'] %>
+  password: diary2357  #<%= ENV['DIARY_DATABASE_PASSWORD'] %>
