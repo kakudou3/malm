@@ -13,29 +13,23 @@ namespace :create_diary do
     puts user_num
 
     users = User.all
-
     range = 1.day.ago.all_day
 
     for user in users do
-      puts range
       items = Item.where("user_id = ? and created_at = ?", user.id, [range])
 
-      joinedStr = nil
-      for item in items do
-        joinedStr << item.text
-        joinedStr << "\n"
+      if items.count > 0
+        joinedStr = nil
+        for item in items do
+          joinedStr << item.text
+          joinedStr << "\n"
+        end
+
+        diary_item = DailyItem.new
+        diary_item.content = joinedStr
+        diary_item.user_id = user.id
+        diary_item.save()
       end
-
-      diary_item = DailyItem.new
-      diary_item.content = joinedStr
-      diary_item.user_id = user.id
-      diary_item.save()
     end
-
-    #joinedStr = nil
-    #for item in items do
-    #  joinedStr << item.text
-    #  joinedStr << "\n"
-    #end
   end
 end

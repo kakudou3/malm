@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  
+
   get 'settings/index'
 
-  get 'diary_items/index'
-
-  get 'diary_items/show'
+  get 'daily_items/index'
+  get 'daily_items/show'
 
   get 'sessions/new'
   get 'sessions/destroy'
