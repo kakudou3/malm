@@ -10,6 +10,27 @@
 
   <!-- header -->
   <% if controller.controller_name == 'users' || controller.controller_name == 'sessions' %>
+    <script type="text/javascript">
+      $(".signup-button").click(function() {
+        location.href = "../users/signup"
+      });
+
+      $(".login-button").click(function() {
+        location.href = "../sessions/new"
+      });
+
+      $(function () {
+        $('.main-text').textillate({
+          loop: true,
+          in: {
+            effect: 'fadeIn',
+          },
+          out: {
+            effect: 'fadeOut',
+          }
+        });
+      });
+    </script>
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->

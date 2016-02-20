@@ -34,6 +34,9 @@ set :repo_url, 'git@example.com:me/my_repo.git'
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
 namespace :deploy do
 
   after :restart, :clear_cache do

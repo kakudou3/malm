@@ -1,7 +1,11 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="center-block">
-      <img src="<%= asset_path "malmBackground.png" %>" class="img-responsive" alt="Responsive image">
+      <img src="<%= asset_path "malmBackground.png" %>" class="img-responsive center-block" alt="Responsive image" style="background-repeat:no-repeat;
+-moz-background-size:auto;
+background-size:auto;
+width:70%;
+height:70%;">
     </div>
   </div>
   <div class="row-fluid">
@@ -10,8 +14,8 @@
     </div>
   </div>
   <div class="row-fluid">
-    <div class="center-block" style="margin-top:50px;">
-      <button class="btn btn-large btn-primary signup-button center-block" type="button">SIGN UP FOR FREE</button>
+    <div class="center-block" style="width: 300px; margin-top:50px;">
+      <button class="btn btn-lg btn-block btn-primary signup-button center-block" type="button">SIGN UP FOR FREE</button>
     </div>
   </div>
   <div class="row">
@@ -30,25 +34,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(".signup-button").click(function() {
-    location.href = "../users/signup"
-  });
-
-  $(".login-button").click(function() {
-    location.href = "../sessions/new"
-  });
-
-  $(function () {
-    $('.main-text').textillate({
-      loop: true,
-      in: {
-        effect: 'fadeIn',
-      },
-      out: {
-        effect: 'fadeOut',
-      }
-    });
-  });
-</script>

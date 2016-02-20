@@ -25,5 +25,5 @@ set :environment, :development
 
 # 毎日 00:00分に行うタスク
 every 1.day, at: '00:00 am' do
-  rake 'rake:create'
+  rake 'create_diary:create'
 end

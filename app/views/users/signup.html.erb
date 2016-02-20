@@ -4,7 +4,7 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-      <h1 class="text-center">Signup</h1>
+      <h1 class="text-center">アカウント登録</h1>
     </div>
 
     <div class="row">
@@ -27,7 +27,9 @@
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, class: 'form-control', :placeholder => 'パスワード確認' %>
           </div>
-          <%= f.submit "SIGN UP", class: 'btn btn-default btn-primary' %><br />
+          <div class="center-block" style="width: 300px; margin-top: 50px;">
+            <%= f.submit "SIGN UP", class: 'btn btn-lg btn-block btn-default btn-primary center-block' %><br />
+          </div>
         <% end %>
       </div>
     </div>
