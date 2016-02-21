@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'settings/index'
 
   get 'daily_items/index'
-  get 'daily_items/show'
+  get 'daily_items/show/:id' => 'daily_items#show'
 
   get 'sessions/new'
   get 'sessions/destroy'

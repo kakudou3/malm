@@ -1,5 +1,3 @@
-console.log("load");
-
 $(document).ready(function(){
   //textareaの動的変更
   $(".item-textarea").height(30);

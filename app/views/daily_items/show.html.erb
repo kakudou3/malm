@@ -1,2 +1,12 @@
-<h1>DiaryItems#show</h1>
-<p>Find me in app/views/diary_items/show.html.erb</p>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <% if !@daily_item.nil? then %>
+      <% if !@daily_item.created_at.nil? then %>
+        <h1 class="text-center"><%= @daily_item.created_at.strftime("%Y/%m/%d") %></h1>
+      <% end %>
+      <% if !@daily_item.content.nil? then %>
+        <p><%= @daily_item.content %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

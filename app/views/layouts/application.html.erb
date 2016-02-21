@@ -72,8 +72,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class=""><a href="../items/index">分報</a></li>
-            <li><a href="../daily_items/index">日報</a></li>
+            <li class=""><%= link_to "分報", :controller => "items", :action => "index" %></li>
+            <li><%= link_to "日報", :controller => "daily_items", :action => "index" %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">

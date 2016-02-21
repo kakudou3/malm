@@ -5,5 +5,8 @@ class DailyItemsController < ApplicationController
   end
 
   def show
+    daily_item_id = params[:id]
+
+    @daily_item = DailyItem.where("id = ?", daily_item_id).first
   end
 end

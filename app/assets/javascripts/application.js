@@ -17,3 +17,4 @@
 //= require _items
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_directory .
+//= require _users
