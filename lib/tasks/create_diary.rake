@@ -10,25 +10,32 @@ namespace :create_diary do
 
     # 全ユーザーに対してバッチ処理を行う
     user_num = User.count("id")
-    puts user_num
-
     users = User.all
     range = 1.day.ago.all_day
 
+    # puts users
     for user in users do
-      items = Item.where("user_id = ? and created_at = ?", user.id, [range])
+      puts "user"
+      # items = Item.where("user_id = ? and created_at = ?", user.id, [range])
+      items = Item.where(user_id: user.id, created_at: [range])
 
       if items.count > 0
-        joinedStr = nil
+        joinedStr = ""
         for item in items do
-          joinedStr << item.text
-          joinedStr << "\n"
+          joinedStr = joinedStr + item.text
+          joinedStr = joinedStr + "\n"
         end
 
-        diary_item = DailyItem.new
-        diary_item.content = joinedStr
-        diary_item.user_id = user.id
-        diary_item.save()
+        puts joinedStr
+
+        #diary_item = DailyItem.new
+        #diary_item.content = joinedStr
+        #diary_item.user_id = user.id
+        #diary_item.save()
+
+        user = DailyItem.new(:content => joinedStr, :user_id => user.id)
+        user.save
+        puts "save"
       end
     end
   end

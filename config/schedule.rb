@@ -18,7 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-
+require File.expand_path(File.dirname(__FILE__) + "/environment")
 set :output, "log/crontab.log"
 
 set :environment, :development
@@ -26,4 +26,5 @@ set :environment, :development
 # 毎日 00:00分に行うタスク
 every 1.day, at: '00:00 am' do
   rake 'create_diary:create'
+  command "echo 'create'"
 end
