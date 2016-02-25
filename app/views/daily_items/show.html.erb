@@ -5,7 +5,9 @@
         <h1 class="text-center"><%= @daily_item.created_at.strftime("%Y/%m/%d") %></h1>
       <% end %>
       <% if !@daily_item.content.nil? then %>
-        <p><%= @daily_item.content %></p>
+        <div class="center-block" style="margin-top: 50px; width: 500px;">
+          <p><%= markdown(text_url_to_link(linebreak_to_br(@daily_item.content)).html_safe) %></p>
+        </div>
       <% end %>
     <% end %>
   </div>
