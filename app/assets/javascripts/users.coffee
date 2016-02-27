@@ -43,10 +43,3 @@ $ ->
     sync: false,
     shuffle: false,
   }
-
-  $('.signup-button').click ->
-    location.href = '../users/signup'
-    return
-  $('.login-button').click ->
-    location.href = '../sessions/new'
-    return
