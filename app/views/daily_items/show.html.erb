@@ -2,7 +2,7 @@
   <div class="row-fluid">
     <% if !@daily_item.nil? then %>
       <% if !@daily_item.created_at.nil? then %>
-        <h1 class="text-center"><%= @daily_item.created_at.strftime("%Y/%m/%d") %></h1>
+        <h1 class="text-center"><%= @daily_item.created_at.yesterday.strftime("%Y/%m/%d") %></h1>
       <% end %>
       <% if !@daily_item.content.nil? then %>
         <div class="center-block" style="margin-top: 50px; width: 500px;">

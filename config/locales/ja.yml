@@ -8,7 +8,7 @@ ja:
         id: ID
         created_at: 登録日時
         updated_at: 更新日時
-        name: 名前
+        name: アカウント名
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認）

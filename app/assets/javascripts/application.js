@@ -12,9 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require twitter/bootstrap
 //= require turbolinks
-//= require _items
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_directory .
-//= require _users
