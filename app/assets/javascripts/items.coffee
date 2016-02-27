@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-$ ->
+ready = ->
   # textareaの動的変更
   $(".item-textarea").height(30)
   $(".item-textarea").css("lineHeight","20px")
@@ -84,3 +84,6 @@ $ ->
     if $(".item-textarea").val() == ""
       # 空だとボタンにグレースケールかける
       return false
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
