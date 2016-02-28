@@ -18,7 +18,7 @@
                     <td class="item" id="<%= item.id %>" style="">
                         <div class="row-fluid" style="padding-top: 5px; padding-bottom: 5px;">
                           <div class="item-inner" id="<%= item.id %>">
-                            <h6 class="colmd-1"><%= item.created_at.strftime("%H:%M:%S") %></h6>
+                            <h6 class="colmd-1" style="color: gray;"><%= item.created_at.strftime("%H:%M:%S") %></h6>
                             <div class="col-md-9 item-text" id="<%= item.id %>"><%= markdown(text_url_to_link(linebreak_to_br(item.text)).html_safe) %></div>
                             <div hidden class="item-text-value" id="<%= item.id %>"><%= item.text %></div>
                             <div class="col-md-3 item-action" style="display: none;">
