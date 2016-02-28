@@ -20,6 +20,10 @@ module Diary
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
 
+    # fonts asset うまく読み込めない
+    config.assets.paths << "#{Rails}/vendor/assets/fonts"
+    config.assets.precompile += %w( .svg .eot .woff .ttf )
+
     # 日本語化
     I18n.enforce_available_locales = true
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]

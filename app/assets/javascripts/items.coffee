@@ -85,5 +85,18 @@ ready = ->
       # 空だとボタンにグレースケールかける
       return false
 
+  # shift + enterで送信できるようにする
+  $(document).on "keypress", ".item-textarea", (e) ->
+    if e.keyCode == 13
+      if e.shiftKey
+        if $(".item-textarea").val() == ""
+          return false
+        else
+          $('.item-submit').trigger('submit')
+          return false
+      else
+        # return false
+
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

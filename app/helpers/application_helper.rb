@@ -30,4 +30,38 @@ module ApplicationHelper
   def linebreak_to_br(text)
     return text.gsub(/\r\n|\r|\n/, "<br />")
   end
+
+  # 対象リンク先のOGP取得メソッド
+  def getOgp(url)
+    charset = nil
+    html = open(url) do |f|
+      charset = f.charset
+      f.read
+    end
+
+    doc = Nokogiri::HTML.parse(html, charset)
+    result_hash = {}
+    site_name = nil
+    image_url = nil
+
+    # titleの取得
+    if doc.css('//meta[property="og:site_name"]/@content').empty?
+      site_name = ""
+    else
+      site_name = doc.css('//meta[property="og:site_name"]/@content').to_s
+    end
+
+    # アイキャッチ画像の取得
+    if doc.css('//meta[property="og:image"]/@content').empty?
+      image_url = ""
+    else
+      image_url = doc.css('//meta[property="og:image"]/@content').to_s
+    end
+
+    result_hash["site_name"] = site_name
+    result_hash["image_url"] = image_url
+
+    return result_hash
+  end
+
 end
