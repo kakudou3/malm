@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root :controller => 'users', :action => 'index'
+
   get 'settings/index'
 
   get 'daily_items/index'
