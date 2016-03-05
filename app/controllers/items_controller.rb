@@ -9,6 +9,7 @@ class ItemsController < ApplicationController
       respond_to do |format|
         if @item.save
           @postitem = Item.last
+          @posturls = ApplicationController.helpers.get_urls_from_text(@postitem.text)
           format.html
           format.js
         else

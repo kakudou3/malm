@@ -4,12 +4,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    user = User.find_by(email: params[:user][:email].downcase)
+    @user = User.find_by(email: params[:session][:email].downcase)
 
-    if user && user.authenticate(params[:user][:password])
+    if @user && @user.authenticate(params[:session][:password])
       # success
-      log_in user
+      log_in @user
+
+      # remember user
+      params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
       # redirect_to diary
       redirect_to controller: 'items', action: 'index'
     else
@@ -21,12 +23,6 @@ class SessionsController < ApplicationController
   def destroy
     log_out
     redirect_to controller: 'users' , action: 'index'
-  end
-
-  private
-
-  def user_params
-    params.require(:user).permit(:email, :password)
   end
 
 end

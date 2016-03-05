@@ -1,3 +1,10 @@
+<% if logged_in? %>
+
+<% elsif %>
+  <script type="text/javascript">
+    window.location.href="/users/index"
+  </script>
+<% end %>
 <div class="container-fluid">
   <div class="row-fluid">
     <% if !@daily_item.nil? then %>
@@ -5,7 +12,7 @@
         <h1 class="text-center"><%= @daily_item.created_at.yesterday.strftime("%Y/%m/%d") %></h1>
       <% end %>
       <% if !@daily_item.content.nil? then %>
-        <div class="center-block" style="margin-top: 50px; width: 500px;">
+        <div class="center-block" style="margin-top: 50px; width: 500px; background-color: #FFFFFF;">
           <p><%= markdown(text_url_to_link(linebreak_to_br(@daily_item.content)).html_safe) %></p>
         </div>
       <% end %>

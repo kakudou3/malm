@@ -34,8 +34,8 @@
           <ul class="nav navbar-nav">
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../sessions/new">Log in</a></li>
-            <li><button type="button" class="btn btn-primary navbar-btn signup-button" onclick="location.href='../users/signup'">Sign up</button></li>
+            <li><a href="/login">Log in</a></li>
+            <li><button type="button" class="btn btn-primary navbar-btn signup-button" onclick="location.href='/signup'">Sign up</button></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -61,7 +61,7 @@
                 <!--<li><a href="#">Profile</a></li>
                 <li><a href="../settings/index">Setting</a></li>
                 <li role="separator" class="divider"></li>-->
-                <li><a href="../sessions/destroy">Logout</a></li>
+                <li><%= link_to "Logout", logout_path, method: :delete %></li>
               </ul>
             </li>
           </ul>

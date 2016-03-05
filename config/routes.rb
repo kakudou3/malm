@@ -2,18 +2,26 @@ Rails.application.routes.draw do
 
   root :controller => 'users', :action => 'index'
 
+  #constraints -> request { ApplicationController.helpers.logged_in? } do
+    # ログインしてる時のパス
+  # root :controller => 'items', :action => 'index'
+  #end
+  # ログインしてない時のパス
+  # root :controller => 'users', :action => 'index'
+
   get 'settings/index'
 
-  get 'daily_items/index'
-  get 'daily_items/show/:id' => 'daily_items#show'
+  get 'daily_items' => 'daily_items#index'
+  get 'daily_items/page/:id' => 'daily_items#show'
 
-  get 'sessions/new'
-  get 'sessions/destroy'
-  post 'sessions/create'
-  delete 'sessions/destroy'
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
 
-  get 'items/index'
-  post 'items/index'
+  get 'diary'      => 'items#index'
+  post 'diary'     => 'items#index'
+
+  # ajax
   post 'items/create'
   post 'items/edit'
   post 'items/delete'
@@ -21,10 +29,10 @@ Rails.application.routes.draw do
   get 'diary/index'
   post 'diary/create'
 
-  get 'users/index'
-  get 'users/login'
-  get 'users/signup'
   post 'users/create'
+
+  get 'signup' => 'users#signup'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

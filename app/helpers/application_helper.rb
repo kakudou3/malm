@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+  include SessionsHelper
+
   # マークダウンへの対応
   @@markdown = Redcarpet::Markdown.new Redcarpet::Render::HTML,
     autolink: true,
@@ -16,6 +18,18 @@ module ApplicationHelper
     @@markdown.render(text).html_safe
   end
 
+  # sessionを保持しているか確認しなければredirectする
+  def check_session
+    if @current_user.nil?
+      if ActionController::Base.controller_name == 'users'
+      else
+        # redirect_to :root
+      end
+    else
+      # redirect_to controller: 'items' , action: 'index'
+    end
+  end
+
   # テキスト中に含まれるurlをリンクに変換するメソッド
   def text_url_to_link text
       URI.extract(text, ['http']).uniq.each do |url|
@@ -26,6 +40,15 @@ module ApplicationHelper
     return text
   end
 
+  # テキスト中に含まれるURLを判別して抽出するメソッド
+  def get_urls_from_text(text)
+    result_array = []
+    URI.extract(text, ['http']).uniq.each do |url|
+      result_array.push(url)
+    end
+    return result_array
+  end
+
   # 改行コードから改行タグを作成する
   def linebreak_to_br(text)
     return text.gsub(/\r\n|\r|\n/, "<br />")
@@ -34,6 +57,7 @@ module ApplicationHelper
   # 対象リンク先のOGP取得メソッド
   def getOgp(url)
     charset = nil
+    require 'open-uri'
     html = open(url) do |f|
       charset = f.charset
       f.read

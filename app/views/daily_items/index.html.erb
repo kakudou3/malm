@@ -1,3 +1,11 @@
+<% if logged_in? %>
+
+<% elsif %>
+  <script type="text/javascript">
+    window.location.href="/users/index"
+  </script>
+<% end %>
+
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="list-group">
@@ -6,7 +14,7 @@
       </a>
       <% if !@daily_items.nil? then %>
         <% @daily_items.each do |item| %>
-          <a href="../daily_items/show/<%= item.id %>" class="list-group-item"><%= item.created_at.yesterday.strftime("%Y/%m/%d") %></a>
+          <a href="../daily_items/page/<%= item.id %>" class="list-group-item"><%= item.created_at.yesterday.strftime("%Y/%m/%d") %></a>
         <% end %>
       <% end %>
     </div>
