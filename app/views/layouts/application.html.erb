@@ -83,6 +83,10 @@
 <%= yield %>
 
   <!-- footer -->
-
+  <% if controller.controller_name == 'users' || controller.controller_name == 'sessions' %>
+    <div class="row" style="height: 100px; padding-top: 40px;">
+      <p class="text-center" style="color: #4f2412;">&copy; <%= Date.today.year %> Many a little makes. All rights reserved.</p>
+    </div>
+  <% end %>
 </body>
 </html>
