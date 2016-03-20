@@ -22,7 +22,7 @@ namespace :create_diary do
       if items.count > 0
         joinedStr = ""
         for item in items do
-          joinedStr = joinedStr + item.text
+          joinedStr = joinedStr + markdown(item.text)
           joinedStr = joinedStr + "\n"
         end
 
