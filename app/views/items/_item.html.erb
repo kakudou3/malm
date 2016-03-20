@@ -3,8 +3,13 @@
       <div class="row-fluid" style="padding-top: 10px; padding-bottom: 10px;">
         <div class="item-inner" id="<%= @postitem.id %>">
           <h6 class="colmd-1" style="color: gray;"><%= @postitem.created_at.strftime("%H:%M:%S") %></h6>
-          <div class="col-md-9 item-text" id="<%= @postitem.id %>"><%= markdown(text_url_to_link(linebreak_to_br(@postitem.text)).html_safe) %></div>
-          <div hidden class="item-text-value" id="<%= @postitem.id %>"><%= @postitem.text %></div>
+          <!-- テキストと画像で分岐 -->
+          <% if @postitem.content_id == 1 %>
+            <%= @postitem.file_name %>
+          <% else %>
+            <div class="col-md-9 item-text" id="<%= @postitem.id %>"><%= markdown(text_url_to_link(linebreak_to_br(@postitem.text)).html_safe) %></div>
+            <div hidden class="item-text-value" id="<%= @postitem.id %>"><%= @postitem.text %></div>
+          <% end %>
           <div class="col-md-3 item-action" style="display: none;">
             <button type="button" class="btn btn-success edit-button" id="<%= @postitem.id %>">Edit</button>
             <button type="button" class="btn btn-warning delete-button" id="<%= @postitem.id %>">Delete</button>

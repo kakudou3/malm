@@ -68,4 +68,35 @@ class ItemsController < ApplicationController
     # redirect_to :action => "index"
     # render index
   end
+
+  def create_file
+    if request.post?
+      if params[:data_file].blank?
+        logger.debug "blank"
+      else
+        upload_file = params[:data_file]
+        content = {}
+        content[:upload_file] = upload_file
+
+        @file_item = Item.new
+        @file_item.user_id = session[:user_id]
+        @file_item.file_name = upload_file.original_filename
+        @file_item.content_id = 1 # 1 → file
+        @file_item.file = upload_file
+
+        if @file_item.save
+          logger.debug "success"
+        else
+          logger.debug "failed"
+        end
+      end
+
+      respond_to do |format|
+        format.json { render :json => @file_item }
+      end
+
+    else
+      render nothing: true
+    end
+  end
 end

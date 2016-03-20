@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'items/create'
   post 'items/edit'
   post 'items/delete'
+  post 'items/create_file'
 
   get 'diary/index'
   post 'diary/create'
