@@ -53,5 +53,7 @@ module Diary
 
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end

@@ -122,6 +122,9 @@ ready = ->
           </td>
         </tr>')
 
+        # ファイル属性をクリア
+        $('input[type=file]').val('')
+
         # 動的に追加した要素に対してjquery動かしたい場合にやむおえず...
         $('#item-content').scrollTop($('#item-content')[0].scrollHeight)
         $('.item').hover ->
