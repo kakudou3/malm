@@ -66,8 +66,6 @@
         <%= form_for(@item, :url => {:controller => 'items', :action => 'index'}, remote: true, authenticity_token: true) do |f| %>
           <div class="col-md-8"><%= f.text_area :text, :placeholder=> 'なにか書く', class: ['form-control', 'item-textarea'] %></div>
           <div class="col-md-1"><%= f.submit "投稿", class: 'btn btn-lg btn-default btn-primary item-submit' %></div>
-          <div class="col-md-1"><%= link_to "アップロード", {}, { :id => "", :class => "btn btn-lg btn-primary file-upload-link"} %></div>
-          <div class="col-md-2"><%= f.file_field :data_file, class: ['item-file', ''], style: "display: none" %></div><br />
         <% end %>
       </div>
     </div>
