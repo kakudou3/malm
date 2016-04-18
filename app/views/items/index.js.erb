@@ -51,7 +51,7 @@ $('.edit-submit').click(function() {
     // ajax通信の開始
     $.ajax({
       type: "POST",
-      url: "edit",
+      url: "/items/edit",
       data: { id: id, text: text },
       success: function(response) {
         console.log(response)
@@ -67,7 +67,7 @@ $('.delete-button').click(function() {
   // ajax通信
   $.ajax({
     type: "POST",
-    url: "delete",
+    url: "/items/delete",
     data: { id: id },
     success: function(response){
       console.log(response)

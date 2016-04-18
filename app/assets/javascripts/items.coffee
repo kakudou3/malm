@@ -151,6 +151,21 @@ ready = ->
       else
         # return false
 
+  screenHeight = $(window).height()
+  console.log(screenHeight)
+  footerContentsHeight = $('.footer-contents').height()
+  console.log(footerContentsHeight)
+  $('.item-content').css("height", screenHeight - footerContentsHeight - 100 + "px")
+  # $('.item-content').css("overflow", "scroll")
+
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
+
+
+$(window).resize ->
+  screenHeight = $(window).height()
+  console.log(screenHeight)
+  footerContentsHeight = $('.footer-contents').height()
+  console.log(footerContentsHeight)
+  $('.item-content').css("height", screenHeight - footerContentsHeight - 100 + "px")

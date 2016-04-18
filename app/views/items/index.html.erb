@@ -17,8 +17,10 @@
         <%= d.strftime("%Y/%m/%d") %>
         </h3>
       </div>
+
+      <!-- 表示領域 -->
       <div class="col-md-9 col-md-offset-1">
-        <div class="item-content" id="item-content" style="height:470px; overflow:scroll;">
+        <div class="item-content" id="item-content" style="overflow:scroll;">
           <table class="table table-condensed" style="background-color: rgb(249, 249, 246);">
             <tbody id="table-item">
               <% if !@items.nil? then %>
@@ -63,11 +65,16 @@
             </tbody>
           </table>
         </div>
+      </div>
+
+      <!-- footer コンテンツ -->
+      <div class="col-md-9 col-md-offset-2 footer-contents" style="position: absolute; bottom: 0px; padding: 10px;">
         <%= form_for(@item, :url => {:controller => 'items', :action => 'index'}, remote: true, authenticity_token: true) do |f| %>
           <div class="col-md-8"><%= f.text_area :text, :placeholder=> 'なにか書く', class: ['form-control', 'item-textarea'] %></div>
           <div class="col-md-1"><%= f.submit "投稿", class: 'btn btn-lg btn-default btn-primary item-submit' %></div>
         <% end %>
       </div>
+
     </div>
   </div>
 </div>
