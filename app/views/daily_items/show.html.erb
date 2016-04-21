@@ -11,11 +11,12 @@
       <% if !@daily_item.created_at.nil? then %>
         <h1 class="text-center"><%= @daily_item.created_at.yesterday.strftime("%Y/%m/%d") %></h1>
       <% end %>
+      <%= @daily_item.content %>
       <% if !@daily_item.content.nil? then %>
         <!-- ¥br で分割したテキスト配列をforループでmarkdownかける -->
         <div class="center-block" style="margin-top: 50px; width: 500px; background-color: #FFFFFF;">
           <% @daily_item.content.each_line do |line| %>
-            <p><%= markdown(text_url_to_link(linebreak_to_br(line)).html_safe) %></p>
+            <%= markdown(text_url_to_link(simple_format(line)).html_safe) %>
           <% end %>
         </div>
       <% end %>
