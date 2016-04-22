@@ -11,7 +11,6 @@
       <% if !@daily_item.created_at.nil? then %>
         <h1 class="text-center"><%= @daily_item.created_at.yesterday.strftime("%Y/%m/%d") %></h1>
       <% end %>
-      <%= @daily_item.content %>
       <% if !@daily_item.content.nil? then %>
         <!-- ¥br で分割したテキスト配列をforループでmarkdownかける -->
         <div class="center-block" style="margin-top: 50px; width: 500px; background-color: #FFFFFF;">
